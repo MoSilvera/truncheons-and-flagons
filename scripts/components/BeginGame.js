@@ -6,7 +6,11 @@ const beginGameListener = () => {
         if(evt.target.id === "beginGameBtn"){
             localStorage.setItem("gamePlay", JSON.stringify(
                 {
-                    placeHolder: 1
+                    gameId: 0,
+                    teamOne: [],
+                    teamTwo: [],
+                    teamThree: [],
+                    round: 0
                 }
             ))
             const message = new CustomEvent("gameStarted")
@@ -22,7 +26,6 @@ const HTML = () => `
 
 const checkForExistingGame = () => {
     if (localStorage.getItem("gamePlay") !== null){
-        console.log("message sent")
         const message = new CustomEvent("roundInProgress")
         eventHub.dispatchEvent(message)
     }

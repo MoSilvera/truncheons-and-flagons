@@ -7,17 +7,23 @@
 const eventHub = document.getElementById("eventHub")
 const container = document.getElementById("dynamicComponentContainer")
 
-const pointFormListener = () => {
+const roundInProgressListener = () => {
     eventHub.addEventListener("roundInProgress", (evt) => {
-        console.log("round")
-       PointForm.PointFormComponent()
+        let round = JSON.parse(localStorage.getItem("gamePlay")).round
+       PointForm.PointFormComponent(round)
 
     })
 }
+const teamsSelectedListener = () => {
+    eventHub.addEventListener("teamsSelected", () => {
+        PointForm.PointFormComponent()
+        console.log(JSON.parse(localStorage.getItem("gamePlay")))
+})
+}
 
-const HTML = () => `
+const HTML = (number) => `
 <div class="addPointForm">
-   <h4>Points Yo</h4>
+   <h4>Round ${number}</h4>
 </div>`
 
 
@@ -25,12 +31,13 @@ const HTML = () => `
 export const PointForm = {
 
 
-    PointFormComponent : () => {
-        container.innerHTML = HTML()
+    PointFormComponent : (round) => {
+        container.innerHTML = HTML(round)
     },
 
     applyPointFormListeners : () => {
-        pointFormListener()
+        roundInProgressListener()
+        teamsSelectedListener()
     }
 
 

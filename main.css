@@ -11,21 +11,19 @@
 #dynamicComponentContainer{
     display: flex;
     align-items: center;
+    border: 1px solid purple;
+    margin: 10px;
+    padding: 10px;
 }
 .addTeamComponent {
     border: 1px solid red;
     margin: 10px;
     padding: 10px;
+
 }
 
 .addPlayerComponent{
     border: 1px solid red;
-    margin: 10px;
-    padding: 10px;
-}
-
-.beginGameComponent{
-    border: 1px solid purple;
     margin: 10px;
     padding: 10px;
 }

@@ -18,17 +18,17 @@ const addTeamsToGameListener = () => {
     eventHub.addEventListener("click", (evt) => {
         if(evt.target.id === "addTeamsToGameBtn"){
 
-            const name = document.getElementById("playerName").value
-            const teamId = parseInt(document.getElementById("playerTeam").value)
-            const newPlayer = {
-                name: name,
-                teamId: teamId
-            }
-            const message = new CustomEvent("addPlayerButtonClicked", {
-                detail: {
-                    newPlayer: newPlayer
-                }
-            })
+          const localStorageGamePlay =  JSON.parse(localStorage.getItem('gamePlay'))
+            localStorageGamePlay.teamOne[0] = parseInt(document.getElementById("teamOne").value)
+            localStorageGamePlay.teamTwo[0] = parseInt(document.getElementById("teamTwo").value)
+            localStorageGamePlay.teamThree[0] = parseInt(document.getElementById("teamThree").value)
+            localStorageGamePlay.teamOne[1] = 0
+            localStorageGamePlay.teamTwo[1] = 0
+            localStorageGamePlay.teamThree[1] = 0
+            let round = localStorageGamePlay.round
+            localStorageGamePlay.round = round + 1
+            localStorage.setItem("gamePlay", JSON.stringify(localStorageGamePlay))
+            const message = new CustomEvent("teamsSelected")
             eventHub.dispatchEvent(message)
         }
     })
