@@ -1,0 +1,31 @@
+#eventHub {
+    display: flex;
+    border: 1px solid black;
+    justify-content: space-evenly;
+}
+#staticComponentContainer {
+    border: 1px dotted green;
+    margin: 10px;
+    padding: 10px;
+}
+#dynamicComponentContainer{
+    display: flex;
+    align-items: center;
+}
+.addTeamComponent {
+    border: 1px solid red;
+    margin: 10px;
+    padding: 10px;
+}
+
+.addPlayerComponent{
+    border: 1px solid red;
+    margin: 10px;
+    padding: 10px;
+}
+
+.beginGameComponent{
+    border: 1px solid purple;
+    margin: 10px;
+    padding: 10px;
+}

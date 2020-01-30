@@ -1,6 +1,12 @@
+import { useTeams } from "../providers/TeamProvider.js"
 
 const eventHub = document.getElementById("eventHub")
 const container = document.getElementById("playerFormContainer")
+
+const CurrentTeamsState = () => {
+    let apiState = useTeams()
+    return apiState
+}
 
 const addPlayerListener = () => {
     eventHub.addEventListener("click", (evt) => {
@@ -22,7 +28,7 @@ const addPlayerListener = () => {
     })
 }
 
-const HTML = () => `
+const HTML = (teams) => `
 <div class="addPlayerComponent">
     <div className="form-group">
         <label htmlFor="animalBreed">PlayerName</label>
@@ -32,6 +38,7 @@ const HTML = () => `
         <label htmlFor="team">Assign to team</label>
         <select name="team" id="playerTeam" className="form-control">
             <option value="0">Select a Team</option>
+            ${teams.map(team => `<option value=${team.id}>${team.name}</option>`).join(" ")}
         </select>
     </div>
     <button id="addPlayerBtn">Add Player</button>
@@ -43,7 +50,8 @@ export const AddPlayerForm = {
 
 
     AddPlayerFormComponent : () => {
-        container.innerHTML = HTML()
+        const teams = CurrentTeamsState()
+        container.innerHTML = HTML(teams)
     },
 
     applyPlayerFormListeners : () => {

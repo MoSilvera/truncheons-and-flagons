@@ -1,17 +1,23 @@
 import { AddPlayerForm } from "./components/AddPlayerForm.js"
-import { newListener } from "./providers/PlayerProvider.js"
 import { AddTeamForm } from "./components/AddTeamForm.js"
-import {teamListener} from "./providers/TeamProvider.js"
+import { BeginGame } from "./components/BeginGame.js"
+import { teamListener, getTeams } from "./providers/TeamProvider.js"
+import { playerListener } from "./providers/PlayerProvider.js"
 
 const { AddPlayerFormComponent, applyPlayerFormListeners } = AddPlayerForm
 const { AddTeamFormComponent, applyTeamFormListeners } = AddTeamForm
+const { BeginGameComponent, applyBeginGameListeners } = BeginGame
 
-AddPlayerFormComponent()
+getTeams()
+.then(() => AddPlayerFormComponent())
+
 AddTeamFormComponent()
+BeginGameComponent()
+
+applyBeginGameListeners()
 applyPlayerFormListeners()
 applyTeamFormListeners()
+
 teamListener()
-newListener()
-
-
+playerListener()
 
