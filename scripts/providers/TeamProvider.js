@@ -8,7 +8,9 @@ export const useTeams = () => {
 
 export const teamListener = () => {
     eventHub.addEventListener("addTeamButtonClicked", (evt) => {
+        const message = new CustomEvent("teamStateChanged")
         addTeam(evt.detail.newTeam)
+        .then(() => eventHub.dispatchEvent(message))
     })
 }
 

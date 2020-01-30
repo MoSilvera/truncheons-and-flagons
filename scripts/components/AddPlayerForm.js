@@ -8,6 +8,10 @@ const CurrentTeamsState = () => {
     return apiState
 }
 
+const stateUpdateListener = () => {
+    eventHub.addEventListener("teamStateChanged",() => AddPlayerForm.AddPlayerFormComponent())
+}
+
 const addPlayerListener = () => {
     eventHub.addEventListener("click", (evt) => {
         if(evt.target.id === "addPlayerBtn"){
@@ -24,6 +28,8 @@ const addPlayerListener = () => {
                 }
             })
             eventHub.dispatchEvent(message)
+            document.getElementById("playerName").value = ""
+            document.getElementById("playerTeam").selectedIndex = 0
         }
     })
 }
@@ -56,6 +62,7 @@ export const AddPlayerForm = {
 
     applyPlayerFormListeners : () => {
         addPlayerListener()
+        stateUpdateListener()
     }
 
 
