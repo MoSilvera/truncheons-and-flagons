@@ -15,6 +15,7 @@ const addTeamListener = () => {
                 }
             })
             eventHub.dispatchEvent(message)
+            document.getElementById("teamName").value = ""
         }
     })
 }
