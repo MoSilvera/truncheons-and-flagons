@@ -1,5 +1,11 @@
+import { useTeams } from "../providers/TeamProvider.js"
+
 const eventHub = document.getElementById("eventHub")
 const container = document.getElementById("dynamicComponentContainer")
+
+const currentTeams = () => {
+    return useTeams()
+}
 
 
 const beginGameListener = () => {
@@ -20,8 +26,13 @@ const beginGameListener = () => {
 }
 
 const gameSavedListener = () => {
-    eventHub.addEventListener("gameSaved", () => {
-        console.log("game Saved")
+    eventHub.addEventListener("gameSaved", (evt) => {
+        const teams = currentTeams()
+        const winner = teams.find(team => team.id === evt.detail.winner.teamId)
+        alert(`I doth say, ${winner.name} has won!`)
+        localStorage.clear()
+        container.innerHTML= HTML()
+
     })
 }
 

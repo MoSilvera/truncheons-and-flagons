@@ -74,11 +74,11 @@ const nextRoundListener = () => {
                     teamScore:teamOneScore
                 }
                 const teamTwoObject = {
-                    teamId: teamOneId,
+                    teamId: teamTwoId,
                     teamScore:teamTwoScore
                 }
                 const teamThreeObject = {
-                    teamId: teamOneId,
+                    teamId: teamThreeId,
                     teamScore:teamThreeScore
                 }
 

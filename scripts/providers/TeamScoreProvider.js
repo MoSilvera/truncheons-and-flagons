@@ -15,6 +15,7 @@ export const teamScoreListener = () => {
 
        let scoreArray = [teamOneScore, teamTwoScore, teamThreeScore]
        let maxArray = scoreArray.sort((a, b) => b.teamScore - a.teamScore)
+       console.log(maxArray)
 
        const gameObj = {}
        addTeamScore(teamOneScore)
