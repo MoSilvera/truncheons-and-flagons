@@ -31,7 +31,7 @@ const addPlayerListener = () => {
 const HTML = (teams) => `
 <div class="addPlayerComponent">
     <div className="form-group">
-        <label htmlFor="animalBreed">PlayerName</label>
+        <label htmlFor="playerName">PlayerName</label>
         <input type="text" id="playerName" className="form-control"placeholder="Player Name"/>
     </div>
     <div className="form-group">

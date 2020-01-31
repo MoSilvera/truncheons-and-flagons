@@ -5,6 +5,8 @@ import { teamListener, getTeams } from "./providers/TeamProvider.js"
 import { playerListener } from "./providers/PlayerProvider.js"
 import { PointForm } from "./components/PointForm.js"
 import { TeamSelectionForm } from "./components/TeamSelectionForm.js"
+import { teamScoreListener } from "./providers/TeamScoreProvider.js"
+import { gameListener } from "./providers/GameProvider.js"
 
 const { AddPlayerFormComponent, applyPlayerFormListeners } = AddPlayerForm
 const { AddTeamFormComponent, applyTeamFormListeners } = AddTeamForm
@@ -17,14 +19,19 @@ applyTeamSelectionListeners()
 applyBeginGameListeners()
 applyPlayerFormListeners()
 applyTeamFormListeners()
+teamListener()
+playerListener()
+teamScoreListener()
+gameListener()
 
 getTeams()
 .then(() => AddPlayerFormComponent())
-AddTeamFormComponent()
-BeginGameComponent()
+.then(() => BeginGameComponent() )
+.then(() => AddTeamFormComponent())
 
 
 
-teamListener()
-playerListener()
+
+
+
 
