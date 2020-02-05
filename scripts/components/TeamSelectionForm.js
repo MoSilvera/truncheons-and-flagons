@@ -3,17 +3,20 @@ import { useTeams } from "../providers/TeamProvider.js"
 const eventHub = document.getElementById("eventHub")
 const container = document.getElementById("dynamicComponentContainer")
 
+//returns the current app state of teams
 const CurrentTeamsState = () => {
     let apiState = useTeams()
     return apiState
 }
 
+//listens for the game begin event and renders the team selection component
 const gameBeginListener = () => {
     eventHub.addEventListener("gameStarted", () => {
         TeamSelectionForm.TeamSelectionComponent()
     })
 }
 
+//adds listener for add teams to game btn, when clicked adds team ids to local storage and dispatches
 const addTeamsToGameListener = () => {
     eventHub.addEventListener("click", (evt) => {
         if(evt.target.id === "addTeamsToGameBtn"){
@@ -34,6 +37,7 @@ const addTeamsToGameListener = () => {
     })
 }
 
+//returns HTML for the team selection component
 const HTML = (teams) => `
 <div class="addTeamsToGameComponent">
     <div className="form-group">
@@ -55,7 +59,7 @@ const HTML = (teams) => `
 </div>`
 
 
-
+//object with method that renders the component and applies begin game/ add team listener
 export const TeamSelectionForm = {
 
 

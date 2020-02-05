@@ -3,11 +3,13 @@ import { useTeams } from "../providers/TeamProvider.js"
 const eventHub = document.getElementById("eventHub")
 const container = document.getElementById("playerFormContainer")
 
+//returns the current App state of teams
 const CurrentTeamsState = () => {
     let apiState = useTeams()
     return apiState
 }
 
+//listener for the add player button, sends out custom message with player object
 const addPlayerListener = () => {
     eventHub.addEventListener("click", (evt) => {
         if(evt.target.id === "addPlayerBtn"){
@@ -28,6 +30,7 @@ const addPlayerListener = () => {
     })
 }
 
+//returns html for team form
 const HTML = (teams) => `
 <div class="addPlayerComponent">
     <div className="form-group">
@@ -45,7 +48,7 @@ const HTML = (teams) => `
 </div>`
 
 
-
+//object with methods that render the component and apply the listeners
 export const AddPlayerForm = {
 
 

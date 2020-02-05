@@ -19,7 +19,7 @@ const roundPhaseListener = () => {
     })
 }
 
-//increases points on the local storage object 
+//increases points on the local storage object
 const increasePoints = () => {
     //current gamePlay object in local storage
     let localStorageGamePlay = JSON.parse(localStorage.getItem("gamePlay"))
@@ -61,14 +61,18 @@ const nextRoundListener = () => {
                 localStorage.setItem("gamePlay",JSON.stringify(localStorageGamePlay))
                 console.log(localStorageGamePlay)
 
+                //team ids from local storage
                 let teamOneId = localStorageGamePlay.team_1[0]
                 let teamTwoId = localStorageGamePlay.team_2[0]
                 let teamThreeId = localStorageGamePlay.team_3[0]
 
+                //team scores from local storage
                 let teamOneScore = localStorageGamePlay.team_1[1]
                 let teamTwoScore = localStorageGamePlay.team_2[1]
                 let teamThreeScore = localStorageGamePlay.team_3[1]
 
+
+                //declares store objects for database
                 const teamOneObject = {
                     teamId: teamOneId,
                     teamScore:teamOneScore
@@ -82,6 +86,7 @@ const nextRoundListener = () => {
                     teamScore:teamThreeScore
                 }
 
+                //declares and dispatches game over event, with teamScore objects on detail
                 const message = new CustomEvent("gameOver", {
                     detail:{
                         teamOneScore: teamOneObject,
@@ -95,6 +100,7 @@ const nextRoundListener = () => {
     })
 }
 
+//returns the point input HTML with team names
 const playerInputHTML = (gamePlayObject) => {
 
     let teamState = currentTeamsState()
@@ -115,6 +121,7 @@ const playerInputHTML = (gamePlayObject) => {
 
 }
 
+//returns full HTML form
 const formContainerHTML = (round) => `
 <div class="addPointForm">
    <h4>Round ${round}</h4>
@@ -123,7 +130,7 @@ const formContainerHTML = (round) => `
 </div>`
 
 
-
+//object with methods for rendering component and applying round listener and and round phase listener
 export const PointForm = {
 
 

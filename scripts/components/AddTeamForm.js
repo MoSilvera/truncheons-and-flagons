@@ -1,6 +1,7 @@
 const eventHub = document.getElementById("eventHub")
 const container = document.getElementById("teamFormContainer")
 
+//listener for the add team button, dispatches custom message with team object
 const addTeamListener = () => {
     eventHub.addEventListener("click", (evt) => {
         if(evt.target.id === "addTeamBtn"){
@@ -20,6 +21,7 @@ const addTeamListener = () => {
     })
 }
 
+//returns html for add team component
 const HTML = () => `
 <div class="addTeamComponent">
     <div className="form-group">
@@ -30,7 +32,7 @@ const HTML = () => `
 </div>`
 
 
-
+//object with methods for rendering component and applying listeners
 export const AddTeamForm = {
 
 

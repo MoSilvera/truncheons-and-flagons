@@ -27,3 +27,30 @@
     margin: 10px;
     padding: 10px;
 }
+#gamePlayContainer{
+    border: 1px solid purple;
+    display: flex;
+    flex-direction: row;
+}
+#stats{
+    border: 1px solid purple;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+#app{
+    display: flex;
+    flex-direction: column;
+    border: 1px dotted blueviolet;
+}
+
+#scoreKeeper{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid green;
+}
+#leaderBoard{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid yellowgreen;
+}

@@ -3,11 +3,12 @@ import { useTeams } from "../providers/TeamProvider.js"
 const eventHub = document.getElementById("eventHub")
 const container = document.getElementById("dynamicComponentContainer")
 
+//returns the current app state of teams
 const currentTeams = () => {
     return useTeams()
 }
 
-
+//listener for begin game button, makes a gamePlay object and put it in local storage, dispatches game started event
 const beginGameListener = () => {
     eventHub.addEventListener("click", (evt) => {
         if(evt.target.id === "beginGameBtn"){
@@ -25,6 +26,8 @@ const beginGameListener = () => {
     })
 }
 
+//gameSaved listener, after game is completed and scores are saved, the final game object is saved
+//Triggers alert with winner, clears local storage, and re-renders begin game component
 const gameSavedListener = () => {
     eventHub.addEventListener("gameSaved", (evt) => {
         const teams = currentTeams()
@@ -36,11 +39,13 @@ const gameSavedListener = () => {
     })
 }
 
+//returns HTML for begin game component
 const HTML = () => `
 <div class="beginGameComponent">
     <button id="beginGameBtn">New Game</button>
 </div>`
 
+//checks for existing game, if there is an existing game
 const checkForExistingGame = () => {
     if (localStorage.getItem("gamePlay") !== null && localStorage.getItem("gamePlay").round <= 3){
         const message = new CustomEvent("roundPhase")
@@ -52,7 +57,7 @@ const checkForExistingGame = () => {
     }
 }
 
-
+//object that has methods for rendering the component and adding the listeners
 export const BeginGame = {
 
 
